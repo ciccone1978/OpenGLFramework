@@ -1,5 +1,13 @@
 #pragma once
 #include <GL/glew.h>
+#include <vector>
+
+struct VertexAttribute
+{
+	GLint size;
+	GLenum type;
+	GLboolean normalized;
+};
 
 class CVertexArray
 {
@@ -9,9 +17,12 @@ public:
 
 	void bind() const;
 	void unbind() const;
-	void addBuffer();
+	void addVertexAttribute(const VertexAttribute& va);
+	void enableBuffer();
 
 private:
 	GLuint mId;
+	std::vector<VertexAttribute> mVertAttrib;
+	unsigned int mStride;
 };
 

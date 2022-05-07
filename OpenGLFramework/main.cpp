@@ -111,13 +111,14 @@ int main(void)
 	std::cout << "OpenGL renderer: " << glGetString(GL_RENDERER) << std::endl;
 	std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
 
-	//VAO - Vertex array object
-	//unsigned int vao;
-	//glGenVertexArrays(1, &vao);
-	//glBindVertexArray(vao);
+	VertexAttribute vaPosition = { 3, GL_FLOAT, GL_FALSE };
+	VertexAttribute vaTexture = { 2, GL_FLOAT, GL_FALSE };
 
 	CVertexArray vao;
 	CVertexBuffer vbo(vertices, sizeof(vertices));
+	vao.addVertexAttribute(vaPosition);
+	vao.addVertexAttribute(vaTexture);
+	vao.enableBuffer();
 
 	//create texture
 	unsigned int texture;
@@ -152,17 +153,6 @@ int main(void)
 	shaderProgram.link();
 	shaderProgram.registerUniformLocation("mvp");
 	shaderProgram.bind();
-
-	//set vertex attributes
-	unsigned int posLocation = 0;
-	glEnableVertexAttribArray(posLocation);
-	glVertexAttribPointer(posLocation, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
-
-	unsigned int texLocation = 1;
-	glEnableVertexAttribArray(texLocation);
-	glVertexAttribPointer(texLocation, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-
-	
 
 	//enable z-buffer testing
 	glEnable(GL_DEPTH_TEST);
