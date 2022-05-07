@@ -26,7 +26,7 @@ const unsigned int SCREEN_WIDTH = 800;
 const unsigned int SCREEN_HEIGHT = 600;
 
 //the cube
-float vertices[] = {
+float vxCube[] = {
 	//position			  //texture	
 	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -71,6 +71,12 @@ float vertices[] = {
 	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 };
 
+float vxTriangle[] = {
+	//position         //color    
+	0.0f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+	0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+   -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f
+};
 
 
 int main(void)
@@ -112,13 +118,22 @@ int main(void)
 	std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
 
 	VertexAttribute vaPosition = { 3, GL_FLOAT, GL_FALSE };
+	VertexAttribute vaColor = { 3, GL_FLOAT, GL_FALSE };
 	VertexAttribute vaTexture = { 2, GL_FLOAT, GL_FALSE };
 
-	CVertexArray vao;
-	CVertexBuffer vbo(vertices, sizeof(vertices));
-	vao.addVertexAttribute(vaPosition);
-	vao.addVertexAttribute(vaTexture);
-	vao.enableBuffer();
+	CVertexArray vao1;
+	CVertexBuffer vbo1(vxCube, sizeof(vxCube));
+	vao1.addVertexAttribute(vaPosition);
+	vao1.addVertexAttribute(vaTexture);
+	vao1.enableBuffer();
+	vao1.unbind();
+
+	CVertexArray vao2;
+	CVertexBuffer vbo2(vxTriangle, sizeof(vxTriangle));
+	vao2.addVertexAttribute(vaPosition);
+	vao2.addVertexAttribute(vaColor);
+	vao2.enableBuffer();
+	vao2.unbind();
 
 	//create texture
 	unsigned int texture;
@@ -146,13 +161,21 @@ int main(void)
 	}
 	stbi_image_free(image);
 
-	//Shader Program compile & link
-	CShader shaderProgram;
-	shaderProgram.loadFromText(GL_VERTEX_SHADER, vsSource);
-	shaderProgram.loadFromText(GL_FRAGMENT_SHADER, fsSource);
-	shaderProgram.link();
-	shaderProgram.registerUniformLocation("mvp");
-	shaderProgram.bind();
+	//CUBE: Shader Program compile & link
+	CShader shaderProgram1;
+	shaderProgram1.loadFromText(GL_VERTEX_SHADER, vsSource);
+	shaderProgram1.loadFromText(GL_FRAGMENT_SHADER, fsSource);
+	shaderProgram1.link();
+	shaderProgram1.registerUniformLocation("mvp");
+	//shaderProgram1.bind();
+
+	//TRIANGLE: Shader Program compile & link
+	CShader shaderProgram2;
+	shaderProgram2.loadFromText(GL_VERTEX_SHADER, vs01);
+	shaderProgram2.loadFromText(GL_FRAGMENT_SHADER, fs01);
+	shaderProgram2.link();
+	shaderProgram2.registerUniformLocation("transform");
+	//shaderProgram2.bind();
 
 	//enable z-buffer testing
 	glEnable(GL_DEPTH_TEST);
@@ -163,12 +186,19 @@ int main(void)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		//
+		//draw the CUBE
+		//
+		shaderProgram1.bind();
+		vao1.bind();
+
 		//MVP
 		glm::mat4 mModel = glm::mat4(1.0f);
 		glm::mat4 mView = glm::mat4(1.0f);
 		glm::mat4 mProject = glm::mat4(1.0f);
 
 		//model
+		mModel = glm::translate(mModel, glm::vec3(0.5f, 0.5f, 0.5f));
 		mModel = glm::rotate(mModel, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
 		mModel = glm::scale(mModel, glm::vec3(0.5f, 0.5f, 0.5f));
 		//view
@@ -177,10 +207,23 @@ int main(void)
 		mProject = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
 		glm::mat4 mMVP = mProject * mView * mModel;
-		glUniformMatrix4fv(shaderProgram.getUniformLocation("mvp"), 1, GL_FALSE, glm::value_ptr(mMVP));
+		glUniformMatrix4fv(shaderProgram1.getUniformLocation("mvp"), 1, GL_FALSE, glm::value_ptr(mMVP));
 
-		//vao.bind();
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//
+		//draw the TRIANGLE
+		//
+		shaderProgram2.bind();
+		vao2.bind();
+
+		glm::mat4 mTrans = glm::mat4(1.0f);
+		//mTrans = glm::translate(mTrans, glm::vec3(0.5f, -0.5f, 0.0f)); //translate
+		mTrans = glm::rotate(mTrans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f)); //rotate
+		//mTrans = glm::scale(mTrans, glm::vec3(0.5f, 0.5f, 0.5f)); //scale
+		glUniformMatrix4fv(shaderProgram2.getUniformLocation("transform"), 1, GL_FALSE, glm::value_ptr(mTrans));
+		
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

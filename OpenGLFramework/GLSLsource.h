@@ -29,3 +29,29 @@ R"glsl(
 		color = texture(myTex, texCoord);
 	}
 )glsl";
+
+
+static const char* vs01 =
+R"glsl(
+	#version 330 core
+	layout(location = 0) in vec4 aPos;
+	layout(location = 1) in vec4 aCol;
+	uniform mat4 transform;
+	out vec4 theColor;
+	void main()
+	{
+		gl_Position = transform * aPos;
+		theColor = aCol;
+	}
+)glsl";
+
+static const char* fs01 =
+R"glsl(
+	#version 330 core
+	out vec4 color;
+	in vec4 theColor;
+	void main()
+	{
+		color = theColor;
+	}
+)glsl";
