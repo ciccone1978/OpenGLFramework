@@ -1,5 +1,5 @@
 //
-//	OpenGLTutorial - Hello Cube
+//	OpenGL
 // 
 
 #ifndef GLEW_STATIC
@@ -27,57 +27,49 @@ const unsigned int SCREEN_HEIGHT = 600;
 
 //the cube
 float vxCube[] = {
-	//position			  //texture	
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+	//position			
+	-0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f, -0.5f,
+	 0.5f,  0.5f, -0.5f,
+	 0.5f,  0.5f, -0.5f,
+	-0.5f,  0.5f, -0.5f,
+	-0.5f, -0.5f, -0.5f,
 
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f,
+	 0.5f, -0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f,  0.5f,
+	-0.5f, -0.5f,  0.5f,
 
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f, -0.5f,
+	-0.5f, -0.5f, -0.5f,
+	-0.5f, -0.5f, -0.5f,
+	-0.5f, -0.5f,  0.5f,
+	-0.5f,  0.5f,  0.5f,
 
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f,
+	 0.5f,  0.5f, -0.5f,
+	 0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
 
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f,  0.5f,
+	 0.5f, -0.5f,  0.5f,
+	-0.5f, -0.5f,  0.5f,
+	-0.5f, -0.5f, -0.5f,
 
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+	-0.5f,  0.5f, -0.5f,
+	 0.5f,  0.5f, -0.5f,
+	 0.5f,  0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f, -0.5f
 };
-
-float vxTriangle[] = {
-	//position         //color    
-	0.0f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-	0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
-   -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f
-};
-
 
 int main(void)
 {
@@ -118,67 +110,46 @@ int main(void)
 	std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
 
 	VertexAttribute vaPosition = { 3, GL_FLOAT, GL_FALSE };
-	VertexAttribute vaColor = { 3, GL_FLOAT, GL_FALSE };
-	VertexAttribute vaTexture = { 2, GL_FLOAT, GL_FALSE };
+	CVertexBuffer vbo(vxCube, sizeof(vxCube));
 
-	CVertexArray vao1;
-	CVertexBuffer vbo1(vxCube, sizeof(vxCube));
-	vao1.addVertexAttribute(vaPosition);
-	vao1.addVertexAttribute(vaTexture);
-	vao1.enableBuffer();
-	vao1.unbind();
+	//cube
+	CVertexArray cubeVao;
+	cubeVao.addVertexAttribute(vaPosition);
+	cubeVao.enableBuffer();
+	//cubeVao.unbind();
 
-	CVertexArray vao2;
-	CVertexBuffer vbo2(vxTriangle, sizeof(vxTriangle));
-	vao2.addVertexAttribute(vaPosition);
-	vao2.addVertexAttribute(vaColor);
-	vao2.enableBuffer();
-	vao2.unbind();
+	//light source
+	CVertexArray lightSourceVao;
+	lightSourceVao.addVertexAttribute(vaPosition);
+	lightSourceVao.enableBuffer();
+	//lightSourceVao.unbind();
 
-	//create texture
-	unsigned int texture;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
+	//cube shader
+	CShader cubeShader;
+	cubeShader.loadFromText(GL_VERTEX_SHADER, vertexShaderSource);
+	cubeShader.loadFromText(GL_FRAGMENT_SHADER, cubeFragmentShaderSource);
+	cubeShader.link();
+	cubeShader.registerUniformLocation("mvp");
+	cubeShader.registerUniformLocation("cubeColor");
+	cubeShader.registerUniformLocation("lightSourceColor");
 
-	//texture option
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	//load imgage
-	int width, height, nChannels;
-	unsigned char* image = stbi_load("container.jpg", &width, &height, &nChannels, 0);
-	if (image)
-	{
-		//associate to the texture
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else
-	{
-		std::cout << "Error loading texture" << std::endl;
-	}
-	stbi_image_free(image);
-
-	//CUBE: Shader Program compile & link
-	CShader shaderProgram1;
-	shaderProgram1.loadFromText(GL_VERTEX_SHADER, vsSource);
-	shaderProgram1.loadFromText(GL_FRAGMENT_SHADER, fsSource);
-	shaderProgram1.link();
-	shaderProgram1.registerUniformLocation("mvp");
-	//shaderProgram1.bind();
-
-	//TRIANGLE: Shader Program compile & link
-	CShader shaderProgram2;
-	shaderProgram2.loadFromText(GL_VERTEX_SHADER, vs01);
-	shaderProgram2.loadFromText(GL_FRAGMENT_SHADER, fs01);
-	shaderProgram2.link();
-	shaderProgram2.registerUniformLocation("transform");
-	//shaderProgram2.bind();
+	//light source shader
+	CShader lightSourceShader;
+	lightSourceShader.loadFromText(GL_VERTEX_SHADER, vertexShaderSource);
+	lightSourceShader.loadFromText(GL_FRAGMENT_SHADER, lightFragmentShaderSource);
+	lightSourceShader.link();
+	lightSourceShader.registerUniformLocation("mvp");
 
 	//enable z-buffer testing
 	glEnable(GL_DEPTH_TEST);
+
+	glm::mat4 model = glm::mat4(1.0f);
+	glm::mat4 view = glm::mat4(1.0f);
+	glm::mat4 projection = glm::mat4(1.0f);
+	glm::mat4 mvp = glm::mat4(1.0f);
+	
+	view = glm::lookAt(glm::vec3(6.0f, 0.0f, -3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
 	//loop
 	while (!glfwWindowShouldClose(window))
@@ -187,43 +158,30 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//
-		//draw the CUBE
+		//cube rendering
 		//
-		shaderProgram1.bind();
-		vao1.bind();
+		model = glm::mat4(1.0f);
+		mvp = projection * view * model;
 
-		//MVP
-		glm::mat4 mModel = glm::mat4(1.0f);
-		glm::mat4 mView = glm::mat4(1.0f);
-		glm::mat4 mProject = glm::mat4(1.0f);
-
-		//model
-		mModel = glm::translate(mModel, glm::vec3(0.5f, 0.5f, 0.5f));
-		mModel = glm::rotate(mModel, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
-		mModel = glm::scale(mModel, glm::vec3(0.5f, 0.5f, 0.5f));
-		//view
-		mView = glm::translate(mView, glm::vec3(0.0f, 0.0f, -3.0f));
-		//projection
-		mProject = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
-
-		glm::mat4 mMVP = mProject * mView * mModel;
-		glUniformMatrix4fv(shaderProgram1.getUniformLocation("mvp"), 1, GL_FALSE, glm::value_ptr(mMVP));
-
+		cubeShader.bind();
+		glUniformMatrix4fv(cubeShader.getUniformLocation("mvp"), 1, GL_FALSE, glm::value_ptr(mvp));
+		glUniform4f(cubeShader.getUniformLocation("cubeColor"), 1.0f, 0.5f, 0.31f, 1.04f);
+		glUniform4f(cubeShader.getUniformLocation("lightSourceColor"), 1.0f, 1.0f, 1.0f, 1.0f);
+		cubeVao.bind();
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		//
-		//draw the TRIANGLE
+		//light source rendering
 		//
-		shaderProgram2.bind();
-		vao2.bind();
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(1.2f, 1.0f, 2.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		mvp = projection * view * model;
 
-		glm::mat4 mTrans = glm::mat4(1.0f);
-		//mTrans = glm::translate(mTrans, glm::vec3(0.5f, -0.5f, 0.0f)); //translate
-		mTrans = glm::rotate(mTrans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f)); //rotate
-		//mTrans = glm::scale(mTrans, glm::vec3(0.5f, 0.5f, 0.5f)); //scale
-		glUniformMatrix4fv(shaderProgram2.getUniformLocation("transform"), 1, GL_FALSE, glm::value_ptr(mTrans));
-		
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		lightSourceShader.bind();
+		glUniformMatrix4fv(lightSourceShader.getUniformLocation("mvp"), 1, GL_FALSE, glm::value_ptr(mvp));
+		lightSourceVao.bind();
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
