@@ -145,17 +145,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CExample01.cpp" />
     <ClCompile Include="CIndexBuffer.cpp" />
     <ClCompile Include="CShader.cpp" />
+    <ClCompile Include="CStaticGeometry.cpp" />
     <ClCompile Include="CVertexArray.cpp" />
     <ClCompile Include="CVertexBuffer.cpp" />
+    <ClCompile Include="CWindow.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CExample01.h" />
     <ClInclude Include="CIndexBuffer.h" />
     <ClInclude Include="CShader.h" />
+    <ClInclude Include="CStaticGeometry.h" />
     <ClInclude Include="CVertexArray.h" />
     <ClInclude Include="CVertexBuffer.h" />
+    <ClInclude Include="CWindow.h" />
     <ClInclude Include="GLSLsource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
