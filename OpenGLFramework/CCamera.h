@@ -12,6 +12,10 @@ public:
 	void move(float distance);
 	void rotate(float angle);
 
+	glm::vec3 getPosition() const { return _position; }
+	glm::vec3 getTarget() const { return _target; }
+	glm::vec3 getUpVector() const { return _up; }
+
 private:
 	glm::vec3 _position;
 	glm::vec3 _target;
