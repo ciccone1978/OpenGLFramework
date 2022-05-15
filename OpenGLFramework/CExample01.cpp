@@ -33,8 +33,8 @@ void CExample01::init()
 	_shader1->loadFromText(GL_FRAGMENT_SHADER, cubeFragmentShaderSource);
 	_shader1->link();
 	_shader1->registerUniformLocation("mvp");
-	_shader1->registerUniformLocation("cubeColor");
-	_shader1->registerUniformLocation("lightSourceColor");
+	_shader1->registerUniformLocation("objectColor");
+	_shader1->registerUniformLocation("lightColor");
 
 	//light source shader
 	_shader2 = new CShader();
@@ -61,8 +61,8 @@ void CExample01::render()
 
 	_shader1->bind();
 	glUniformMatrix4fv(_shader1->getUniformLocation("mvp"), 1, GL_FALSE, glm::value_ptr(mvp));
-	glUniform4f(_shader1->getUniformLocation("cubeColor"), 1.0f, 0.5f, 0.31f, 1.04f);
-	glUniform4f(_shader1->getUniformLocation("lightSourceColor"), 1.0f, 1.0f, 1.0f, 1.0f);
+	glUniform4f(_shader1->getUniformLocation("objectColor"), 1.0f, 0.5f, 0.31f, 1.04f);
+	glUniform4f(_shader1->getUniformLocation("lightColor"), 1.0f, 1.0f, 1.0f, 1.0f);
 	_vao1->bind();
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 

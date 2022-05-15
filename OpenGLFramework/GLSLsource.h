@@ -36,12 +36,14 @@ R"glsl(
 static const char* cubeFragmentShaderSource =
 R"glsl(
 	#version 330 core
-	out vec4 color;
-	uniform vec4 cubeColor;
-	uniform vec4 lightSourceColor;
+	out vec4 fragColor;
+	uniform vec4 objectColor;
+	uniform vec4 lightColor;
 	void main()
 	{
-		color = cubeColor * lightSourceColor;
+		float ambientFactor = 0.1f;
+		vec4 ambientColor = ambientFactor * lightColor;
+		fragColor = ambientColor * objectColor;
 	}
 )glsl";
 
@@ -49,9 +51,9 @@ R"glsl(
 static const char* lightFragmentShaderSource =
 R"glsl(
 	#version 330 core
-	out vec4 color;
+	out vec4 fragColor;
 	void main()
 	{
-		color = vec4(1.0f);
+		fragColor = vec4(1.0f);
 	}
 )glsl";
