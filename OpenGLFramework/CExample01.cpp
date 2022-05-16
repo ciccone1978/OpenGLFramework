@@ -34,8 +34,10 @@ void CExample01::init()
 	_vao2->unbind();
 	
 	_shader1 = new CShader();
-	_shader1->loadFromText(GL_VERTEX_SHADER, vertexShaderSource);
-	_shader1->loadFromText(GL_FRAGMENT_SHADER, cubeFragmentShaderSource);
+	//_shader1->loadFromText(GL_VERTEX_SHADER, vertexShaderSource);
+	//_shader1->loadFromText(GL_FRAGMENT_SHADER, cubeFragmentShaderSource);
+	_shader1->loadFromFile(GL_VERTEX_SHADER, "shader\\vsExample01.glsl");
+	_shader1->loadFromFile(GL_FRAGMENT_SHADER, "shader\\fsExample01_1.glsl");
 	_shader1->link();
 	_shader1->registerUniformLocation("model");
 	_shader1->registerUniformLocation("view");
@@ -47,8 +49,10 @@ void CExample01::init()
 
 	//light source shader
 	_shader2 = new CShader();
-	_shader2->loadFromText(GL_VERTEX_SHADER, vertexShaderSource);
-	_shader2->loadFromText(GL_FRAGMENT_SHADER, lightFragmentShaderSource);
+	//_shader2->loadFromText(GL_VERTEX_SHADER, vertexShaderSource);
+	//_shader2->loadFromText(GL_FRAGMENT_SHADER, lightFragmentShaderSource);
+	_shader2->loadFromFile(GL_VERTEX_SHADER, "shader\\vsExample01.glsl");
+	_shader2->loadFromFile(GL_FRAGMENT_SHADER, "shader\\fsExample01_2.glsl");
 	_shader2->link();
 	_shader2->registerUniformLocation("model");
 	_shader2->registerUniformLocation("view");
@@ -70,14 +74,14 @@ void CExample01::render()
 	//mvp = projection * _camera->getViewMatrix() * model;
 
 	_shader1->bind();
-	glUniformMatrix4fv(_shader1->getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(model));
-	glUniformMatrix4fv(_shader1->getUniformLocation("view"), 1, GL_FALSE, glm::value_ptr(_camera->getViewMatrix()));
-	glUniformMatrix4fv(_shader1->getUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
-	glUniform3f(_shader1->getUniformLocation("objectColor"), 1.0f, 0.5f, 0.31f);
-	glUniform3f(_shader1->getUniformLocation("lightColor"), 1.0f, 1.0f, 1.0f);
-	glUniform3fv(_shader1->getUniformLocation("lightPos"), 1, &lightPos[0]);
-	glm::vec3 viewPos = _camera->getPosition();
-	glUniform3fv(_shader1->getUniformLocation("viewPos"), 1, &viewPos[0]);
+	_shader1->setUniform("model", model);
+	_shader1->setUniform("view", _camera->getViewMatrix());
+	_shader1->setUniform("projection", projection);
+	_shader1->setUniform("objectColor", 1.0f, 0.5f, 0.31f);
+	_shader1->setUniform("lightColor", 1.0f, 1.0f, 1.0f);
+	_shader1->setUniform("lightPos", lightPos);
+	_shader1->setUniform("viewPos", _camera->getPosition());
+	
 	_vao1->bind();
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
@@ -87,9 +91,10 @@ void CExample01::render()
 	//mvp = projection * _camera->getViewMatrix() * model;
 
 	_shader2->bind();
-	glUniformMatrix4fv(_shader2->getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(model));
-	glUniformMatrix4fv(_shader2->getUniformLocation("view"), 1, GL_FALSE, glm::value_ptr(_camera->getViewMatrix()));
-	glUniformMatrix4fv(_shader2->getUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	_shader2->setUniform("model", model);
+	_shader2->setUniform("view", _camera->getViewMatrix());
+	_shader2->setUniform("projection", projection);
+
 	_vao2->bind();
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 	

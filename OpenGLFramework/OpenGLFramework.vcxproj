@@ -166,6 +166,13 @@
     <ClInclude Include="CWindow.h" />
     <ClInclude Include="GLSLsource.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="fsExample01_1.glsl" />
+    <None Include="fsExample01_2.glsl" />
+    <None Include="shader\fsDemo.glsl" />
+    <None Include="shader\vsDemo.glsl" />
+    <None Include="vsExample01.glsl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

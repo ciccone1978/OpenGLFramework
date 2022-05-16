@@ -3,7 +3,7 @@
 #include "CShader.h"
 #include "CVertexArray.h"
 #include "CVertexBuffer.h"
-#include "GLSLsource.h"
+//#include "GLSLsource.h"
 #include "CStaticGeometry.h"
 #include "CCamera.h"
 
