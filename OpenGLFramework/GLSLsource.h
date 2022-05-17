@@ -31,6 +31,7 @@ R"glsl(
 	uniform mat4 projection;
 	out vec3 normal;
 	out vec3 fragPos;
+
 	void main()
 	{
 		fragPos = vec3(model * vec4(aPos, 1.0));
@@ -59,7 +60,7 @@ R"glsl(
 		//ambient light
 		float ambientFactor = 0.1f;
 		vec3 ambient = ambientFactor * lightColor;
-
+	
 		//diffuse light
 		vec3 norm = normalize(normal);
 		vec3 lightDir = normalize(lightPos - fragPos);
@@ -74,7 +75,7 @@ R"glsl(
 		vec3 specular = specularFactor * spec * lightColor; 
 
 		fragColor = vec4((ambient + diffuse + specular) * objectColor, 1.0);
-	}
+	}	
 )glsl";
 
 //Light Source Fragment shader
@@ -82,8 +83,9 @@ static const char* lightFragmentShaderSource =
 R"glsl(
 	#version 330 core
 	out vec4 fragColor;
+	uniform vec3 lightColor;
 	void main()
 	{
-		fragColor = vec4(1.0f);
+		fragColor = vec4(lightColor, 1.0f);
 	}
 )glsl";

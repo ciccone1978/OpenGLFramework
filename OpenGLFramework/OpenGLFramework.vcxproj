@@ -116,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\include\;$(SolutionDir)external\imgui\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,7 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\include\;$(SolutionDir)external\imgui\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +145,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\external\imgui\src\imgui.cpp" />
+    <ClCompile Include="..\external\imgui\src\imgui_draw.cpp" />
+    <ClCompile Include="..\external\imgui\src\imgui_impl_glfw.cpp" />
+    <ClCompile Include="..\external\imgui\src\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\external\imgui\src\imgui_tables.cpp" />
+    <ClCompile Include="..\external\imgui\src\imgui_widgets.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CExample01.cpp" />
     <ClCompile Include="CIndexBuffer.cpp" />
@@ -156,6 +162,15 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\external\imgui\include\imconfig.h" />
+    <ClInclude Include="..\external\imgui\include\imgui.h" />
+    <ClInclude Include="..\external\imgui\include\imgui_impl_glfw.h" />
+    <ClInclude Include="..\external\imgui\include\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\external\imgui\include\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="..\external\imgui\include\imgui_internal.h" />
+    <ClInclude Include="..\external\imgui\include\imstb_rectpack.h" />
+    <ClInclude Include="..\external\imgui\include\imstb_textedit.h" />
+    <ClInclude Include="..\external\imgui\include\imstb_truetype.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CExample01.h" />
     <ClInclude Include="CIndexBuffer.h" />
@@ -167,11 +182,11 @@
     <ClInclude Include="GLSLsource.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fsExample01_1.glsl" />
-    <None Include="fsExample01_2.glsl" />
     <None Include="shader\fsDemo.glsl" />
+    <None Include="shader\fsExample01_1.glsl" />
+    <None Include="shader\fsExample01_2.glsl" />
     <None Include="shader\vsDemo.glsl" />
-    <None Include="vsExample01.glsl" />
+    <None Include="shader\vsExample01.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

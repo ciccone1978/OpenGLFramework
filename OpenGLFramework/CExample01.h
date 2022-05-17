@@ -3,7 +3,7 @@
 #include "CShader.h"
 #include "CVertexArray.h"
 #include "CVertexBuffer.h"
-//#include "GLSLsource.h"
+#include "GLSLsource.h"
 #include "CStaticGeometry.h"
 #include "CCamera.h"
 
@@ -15,6 +15,7 @@ public:
 
 	void init() override;
 	void render() override;
+	void renderImGui() override;
 	void update() override;
 	void handleInput() override;
 

@@ -9,6 +9,10 @@
 #include <glm\gtc\matrix_transform.hpp>
 #include <glm\gtc\type_ptr.hpp>
 
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
+
 #include <string>
 
 class CWindow
@@ -25,6 +29,7 @@ public:
 
 	virtual void init() {};
 	virtual void render() {};
+	virtual void renderImGui() {};
 	virtual void update() {};
 	virtual void handleInput() {}
 

@@ -7,6 +7,10 @@ CWindow::CWindow()
 
 CWindow::~CWindow()
 {
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
+
 	glfwDestroyWindow(_window);
 	glfwTerminate();
 }
@@ -19,6 +23,7 @@ bool CWindow::createWindow(const std::string& title, const unsigned int w, const
 		return false;
 	}
 
+	const char* glsl_version = "#version 330";
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -33,6 +38,7 @@ bool CWindow::createWindow(const std::string& title, const unsigned int w, const
 
 	//make current context
 	glfwMakeContextCurrent(_window);
+	glfwSwapInterval(1);
 
 	//GLEW init
 	if (glewInit() != GLEW_OK)
@@ -40,6 +46,16 @@ bool CWindow::createWindow(const std::string& title, const unsigned int w, const
 		glfwTerminate();
 		return false;
 	}
+
+	//Setup ImGUI
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplGlfw_InitForOpenGL(_window, true);
+	ImGui_ImplOpenGL3_Init(glsl_version);
 
 	_screen_width = w;
 	_screen_height = h;
@@ -58,13 +74,15 @@ void CWindow::runApp()
 		float currentTime = glfwGetTime();
 		_timeDelta = currentTime - _lastFrameTime;
 		_lastFrameTime = currentTime;
+		
+		glfwPollEvents();
 
 		handleInput();
 		render();
+		renderImGui();
 		update();
 
 		glfwSwapBuffers(_window);
-		glfwPollEvents();
 	}
 }
 

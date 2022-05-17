@@ -15,7 +15,7 @@ void main()
 	//ambient light
 	float ambientFactor = 0.1f;
 	vec3 ambient = ambientFactor * lightColor;
-
+	
 	//diffuse light
 	vec3 norm = normalize(normal);
 	vec3 lightDir = normalize(lightPos - fragPos);
